@@ -1,11 +1,15 @@
 import React from 'react';
-import UserProfile from './ProfileForm'; // UserProfile bileşenini import edin
+import ProfileForm from "./ProfileForm";
+import Login from "./signup";
+import SignUp from "./signup";
+
+
 
 function App() {
   return (
     <div>
-      <h1>My App</h1>
-      <UserProfile /> {/* UserProfile bileşenini kullanın */}
+      <h1>ChatApplication</h1>
+      <SignUp/> {/* UserProfile bileşenini kullanın */}
     </div>
   );
 }
