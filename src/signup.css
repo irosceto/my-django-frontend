@@ -1,168 +1,126 @@
-body
-        {
-           background-image: url("./images/artistic-blurry-colorful-wallpaper-background.jpg");
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url("./images/artistic-blurry-colorful-wallpaper-background.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 
-            background-repeat:no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
+.fa-message {
+  font-size: 90px;
+  color: #470f6b;
+  margin: 0 40px;
+}
 
-        .fa-message{
-            font-size: 90px;
-            color: #470f6b;
-            margin-top: 0px;
-            margin-left: 40px;
+.message_icon {
+  max-width: 220px;
+  margin: 250px auto 0;
+}
 
-        }
-        .message_icon
-        {
-            max-width: 220px;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 250px;
-        }
+.form-outer {
+  max-width: 265px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+input {
+  border: 0.5px groove #ce98e0;
+  padding: 10px;
+  font-size: 18px;
+  display: block;
+  width: 100%;
+  outline: 0;
+  background-color: #e5e2e7;
+  border-radius: 5px;
+  color: #4e1176;
+  margin-bottom: 20px;
+}
+
+#form-input {
+  position: relative;
+  width: 100%;
+}
+
+.fa-user,
+.fa-lock {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  left: 10px;
+  color: #470f6b;
+  opacity: 0.8;
+}
+
+::placeholder {
+  color: #8b5c99;
+  opacity: 0.6;
+  font-size: 18px;
+}
+
+#login-form-submit {
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+  height: 40px;
+  color: #4e1176;
+  border: none;
+  border-radius: 3px;
+  margin-top: 20px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+  background-color: #be83dd;
+  cursor: pointer;
+}
+
+.login,
+.signup {
+  font-size: 16px;
+  font-family: DynaPuff;
+  margin-top: 20px;
+  color: #4e1176;
+}
+
+.login_button,
+.signup_button {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login:hover,
+.signup:hover {
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-body {
+  text-align: center;
+  padding: 20px;
+  border: 5px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.all_elements {
+  width: 320px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+.h_bir {
+  text-align: center;
+
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: bold; /* Kalın yazı */
+  text-transform: uppercase;
+}
 
 
-        .form-outer
-        {
-            max-width:265px;
-            margin: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* transform: translate(-10px, 190px); */
-            margin-top: 30px;
-        }
-        input{
-            border: 0.5px groove #ce98e0;
-            padding: 5px 10px 5px 50px;
-            font-size: 18px;
-            line-height: 29px;
-            display: block;
-            width: 100%;
-            outline: 0;
-            background-color: #e5e2e7;
-            border-radius: 5px;
-            color: #4e1176;
-        }
 
-        #form-input
-        {
-            position: relative;
-
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            margin: 20px 0;
-        }
-
-        .fa-user
-        {
-            position:absolute;
-            top:-57px;
-            left:10px;
-            font-size: 18px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #470f6b;
-            opacity: 0.8;
-
-        }
-        .fa-lock
-        {
-            top:0;
-            position:absolute;
-            font-size: 18px;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #470f6b;
-            opacity: 0.8;
-            left:10px;
-        }
-        ::placeholder
-        {
-            color:#8b5c99;
-            opacity: 0.6;
-            font-family: arial;
-            font-size: 18px;
-            font-weight: normal;
-
-        }
-
-        #login-form-submit
-       {
-
-        justify-content: center;
-        display: flex;
-        font-weight: bold;
-        font-size: 18px;
-        width: 265px;
-        height: 35px;
-        color: #4e1176;
-        border-radius: 3px;
-        border-style: none;
-        padding: 0px ;
-        margin-left: 30px;
-
-        box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-        background-color: #be83dd;
-        font-family: DynaPuff;
-        cursor: pointer;
-       }
-
-        .login
-        {
-            font-size: 5px;
-            font-family: DynaPuff;
-            height: 15px;
-            width: 150px;
-            margin-top: 15px;
-            margin-left: 220px;
-        }
-        .login_button
-        {
-            color: #4e1176;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        .login:hover
-        {
-            cursor:pointer;
-        }
-        .signup
-        {
-
-            font-size: 5px;
-            font-family: DynaPuff;
-            height: 15px;
-            width: 150px;
-            margin-top: 20px;
-            margin-left: 30px;
-
-        }
-        .signup_button
-        {
-            color: #4e1176;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        .signup:hover
-        {
-            cursor:pointer;
-        }
-        .all_elements
-        {
-
-            width: 320px;
-            height: 220px;
-            margin: auto;
-
-        }
