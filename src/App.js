@@ -1,15 +1,15 @@
 import React from 'react';
 import ProfileForm from "./ProfileForm";
-import Login from "./signup";
-import SignUp from "./signup";
 
+import SignUp from "./signup";
+import LoginForm from "./login"
 
 
 function App() {
   return (
     <div>
       <h1 className="h_bir">ChatApplication</h1>
-      <SignUp/> {/* UserProfile bileşenini kullanın */}
+      <LoginForm/> {/* UserProfile bileşenini kullanın */}
     </div>
   );
 }
