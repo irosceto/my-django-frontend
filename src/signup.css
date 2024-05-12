@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-image: url("./images/artistic-blurry-colorful-wallpaper-background.jpg");
+  background-image: url("./images/bak.png");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -26,16 +26,17 @@ body {
 }
 
 input {
-  border: 0.5px groove #ce98e0;
+  border: 0.5px groove #c8a9a9;
   padding: 10px;
   font-size: 18px;
   display: block;
   width: 100%;
   outline: 0;
-  background-color: #e5e2e7;
+  background-color: #eee3e3;
   border-radius: 5px;
   color: #4e1176;
   margin-bottom: 20px;
+  border-radius: 20px;
 }
 
 #form-input {
@@ -50,7 +51,7 @@ input {
   transform: translateY(-50%);
   font-size: 18px;
   left: 10px;
-  color: #470f6b;
+  color: #4e1176;
   opacity: 0.8;
 }
 
@@ -67,25 +68,28 @@ input {
   height: 40px;
   color: #4e1176;
   border: none;
-  border-radius: 3px;
+  border-radius: 20px;
   margin-top: 20px;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
-  background-color: #be83dd;
+  background-color: #cfaeae;
   cursor: pointer;
 }
 
 .login,
 .signup {
   font-size: 16px;
-  font-family: DynaPuff;
+  font-family: Arial, Helvetica, sans-serif;
   margin-top: 20px;
   color: #4e1176;
+  
 }
 
 .login_button,
 .signup_button {
   text-decoration: none;
   font-weight: bold;
+
+  
 }
 
 .login:hover,
@@ -95,32 +99,38 @@ input {
 
 .card {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: center; /*yatayda hizalar*/
+  align-items: flex-start; /* Dikey eksende en üste hizala */
+  padding-top: 75px; /* Üstte bir boşluk bırak */
   height: 100vh;
+  float: right; /* sağa hizalamak için */
+  margin-right: 175px;
+
 }
 
 .card-body {
   text-align: center;
   padding: 20px;
-  border: 5px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 5px solid #cfaeae;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px #8ca0de1a;
 }
 
 .all_elements {
   width: 320px;
   margin: auto;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
+  
 }
 .h_bir {
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: bold; /* Kalın yazı */
   text-transform: uppercase;
+  color: #7757A3;
 }
-
 
 

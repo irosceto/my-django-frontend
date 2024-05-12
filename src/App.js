@@ -9,7 +9,7 @@ function App() {
   return (
     <div>
       <h1 className="h_bir">ChatApplication</h1>
-      <LoginForm/> {/* UserProfile bileşenini kullanın */}
+      <SignUp/> {/* UserProfile bileşenini kullanın */}
     </div>
   );
 }
