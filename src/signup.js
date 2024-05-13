@@ -18,7 +18,7 @@ const SignUp = () => {
                     <div className="form-outer">
                         <form id="form-input" action="http://localhost:8000/api/register/" method="post">
                             <i className="fa-solid fa-user"></i>
-                            <input type="text" name="username" placeholder="Enter your email"/>
+                            <input type="text" name="username" placeholder="Enter your username"/>
                             <br/> {/* Yeni satır için `<br />` kullanıldı */}
                             <i className="fa-solid fa-user"></i>
                             <input type="text" name="first_name" placeholder="Enter your Firstname"/>
@@ -28,6 +28,8 @@ const SignUp = () => {
                             <br/> {/* Yeni satır için `<br />` kullanıldı */}
                             <i className="fa-solid fa-lock"></i>
                             <input type="password" name="password" placeholder="Enter your password"/>
+                            <br/> {/* Yeni satır için `<br />` kullanıldı */}
+                             <input type="email" name="email" placeholder="Enter your last email"/>
                             <br/> {/* Yeni satır için `<br />` kullanıldı */}
                             <a href="#" style={{textDecoration: 'none'}}> {/* Stil nesnesi olarak tanımlandı */}
                                 <input type="submit" className="login" value="SIGNUP" id="login-form-submit"/>
