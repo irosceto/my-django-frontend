@@ -1,19 +1,20 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import ProfileForm from "./ProfileForm";
 import SignUp from "./signup";
-import Login from "./login"; {/*Login bileşeni import edildi*/} 
+import LoginFormm from "./home";
+import Login from "./login"; 
 import Navigate from "./Navigate";
-import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 
 function App() {
   return (
     <div>
       <h1 className="h_bir">ChatApplication</h1>
       <BrowserRouter>
-        <Navigate/> {/* UserProfile bileşenini kullanın */}
+        <Navigate/>
         <Routes>
           <Route path='/register' element={<SignUp/>} /> 
-          <Route path='/login' element={<Login/>} /> 
+          <Route path='/login' element={<LoginFormm/>} /> 
         </Routes>
       </BrowserRouter>
     </div>
@@ -21,3 +22,4 @@ function App() {
 }
 
 export default App;
+
