@@ -22,7 +22,7 @@ const SignUp = () => {
                 last_name
             });
             // Başarılı kayıt durumunda yönlendirme yap
-            if (response.status === 200) {
+            if (response.status === 201) {
                 window.location.href = "/home"; // Yönlendirme
             }
         } 
