@@ -1,13 +1,20 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'; // BrowserRouter bileşenini import et
+import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
+import ProfileForm from "./ProfileForm";
 import SignUp from "./signup";
+import LoginFormm from "./home";
+import Navigate from "./Navigate";
 
 function App() {
   return (
     <div>
       <h1 className="h_bir">ChatApplication</h1>
-      <BrowserRouter> {/* BrowserRouter ile SignUp bileşenini sarmala */}
-        <SignUp />
+      <BrowserRouter>
+        <Navigate/>
+        <Routes>
+          <Route path='/register' element={<SignUp/>} /> 
+          <Route path='/home' element={<LoginFormm/>} /> 
+        </Routes>
       </BrowserRouter>
     </div>
   );
