@@ -20,7 +20,6 @@ const LoginFormm = () => {
       );
       const token = response.data.token;
       localStorage.setItem('token', token);
-      // Başarılı giriş yapıldıktan sonra istenilen bir işlem yapılabilir, örneğin yönlendirme yapılabilir.
       navigate('/chat'); // Burada '/chat' sayfasına yönlendirme yapılıyor
     } catch (error) {
       setError('Kullanıcı adı veya şifre hatalı.');
