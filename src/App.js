@@ -6,6 +6,7 @@ import LoginFormm from "./home";
 import Navigate from "./Navigate";
 import ChatRooms from "./chat";
 
+
 function App() {
   return (
     <div>
@@ -13,9 +14,9 @@ function App() {
       <BrowserRouter>
         <Navigate />
         <Routes>
-          <Route path='/register' element={<SignUp />} />
-          <Route path='/home' element={<LoginFormm />} />
-          <Route path='/chat' element={<ChatRooms/>}  />
+          <Route path='/register' element={<SignUp/>} /> 
+          <Route path='/home' element={<LoginFormm/>} />
+          <Route path='/chat' element={<ChatRooms/>} />
         </Routes>
       </BrowserRouter>
     </div>
