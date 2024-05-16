@@ -6,7 +6,8 @@ export default function Navigate(){
         <div>
             <Link to='/register'>Register</Link> {/*sayfayı her seferinde yeniden render etmemek için*/} 
             <br></br>
-            <Link to='/login'>Login</Link>
+            <Link to='/home'>Login</Link>
+            <br></br>
             <Link to='/chat'>Chat</Link>
         </div>
     )
