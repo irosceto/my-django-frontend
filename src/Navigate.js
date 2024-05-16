@@ -1,12 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-export default function Navigate(){
-    return(
-        <div>
-            <Link to='/register'>Register</Link> {/*sayfayı her seferinde yeniden render etmemek için*/} 
-            <br></br>
-            <Link to='/login'>Login</Link>
-        </div>
-    )
+
+const Navigate = () => {
+  return (
+    <nav>
+        <ul>
+            <li><Link to="/register">Register</Link></li>
+            <li><Link to="/home">Home</Link></li>
+            <li><Link to="/chat">Login</Link></li>
+        </ul>
+    </nav>
+  );
 }
+
+export default Navigate;
