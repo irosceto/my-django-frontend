@@ -1,75 +1,53 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import './chat.css'; // chat.css dosyasını import et
 
 const ChatRooms = () => {
-  const [chatRooms, setChatRooms] = useState([]);
-  const [newRoomName, setNewRoomName] = useState('');
-  const [error, setError] = useState('');
+  const [roomName, setRoomName] = useState('');
+  const [error, setError] = useState(null);
 
-  useEffect(() => {
-    // Sunucudan sohbet odalarını al
-    fetchChatRooms();
-  }, []);
-
-  const fetchChatRooms = async () => {
-    try {
-      const response = await axios.get('http://localhost:8000/api/chat_rooms/');
-      setChatRooms(response.data);
-    } catch (error) {
-      console.error('Sohbet odaları alınırken hata oluştu:', error);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    if (!roomName) {
+      setError('Oda adı boş olamaz');
+      return;
     }
-  };
-
-  const createRoom = async () => {
-    try {
-      if (!newRoomName) {
-        setError('Oda adı boş olamaz');
-        return;
-      }
-      const response = await axios.post('http://localhost:8000/api/create_chat_room/', { name: newRoomName });
-      setNewRoomName('');
-      fetchChatRooms(); // Sohbet odalarını güncelle
-      // Yeni oda oluşturulduğunda, oluşturulan odanın bilgilerini alarak listeye ekleyelim
-      setChatRooms(prevChatRooms => [...prevChatRooms, response.data]);
-    } catch (error) {
-      setError('Oda oluşturulurken hata oluştu');
-      console.error('Oda oluşturulurken hata oluştu:', error);
+    // Kullanıcının kimliğini localStorage'dan al
+    const userId = localStorage.getItem('user_id');
+    const members = [userId]; // Tek kullanıcı kimliğini bir liste olarak al
+    // Axios isteği ile yeni bir sohbet odası oluşturuluyor
+    const response = await axios.post('http://localhost:8000/api/create_chat_room/', {
+      name: roomName,
+      members: members // Oluşturan kullanıcıyı sohbet odası üyelerine ekle
+    });
+    // Yeni oda oluşturulduğunda sayfayı yenilemek veya başka bir işlem yapmak gerekebilir
+    // Burada sadece formu sıfırlıyoruz
+    setRoomName('');
+    setError(null);
+  } catch (error) {
+    if (error.response) {
+      // Sunucudan dönen hata varsa
+      setError(error.response.data.detail);
+    } else {
+      // Sunucudan dönen bir hata yoksa
+      setError('Oda oluşturulurken bir hata oluştu');
     }
-  };
-
+  }
+};
   return (
     <div>
-      <div className="top_div"> {/* .top_div sınıfını ekleyin */}
-        <div className="profile"></div>
-      </div>
-
-      <div className="container"> {/* .container sınıfını ekleyin */}
-        <div className="chat-rooms">
-          <h2>Sohbet Odaları</h2>
-          <ul>
-            {chatRooms.map(room => (
-              <li key={room.id}>{room.name}</li>
-            ))}
-          </ul>
+      <h2>Yeni Sohbet Odası Oluştur</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Oda Adı:</label>
+          <input type="text" value={roomName} onChange={(e) => setRoomName(e.target.value)} />
         </div>
-      </div>
-
-      <div className="third_div"> {/* .third_div sınıfını ekleyin */}
-        <button className="join_button">+</button>
-        <p className="join_text">KATIL</p>
-        <input
-          type="text"
-          value={newRoomName}
-          onChange={(e) => setNewRoomName(e.target.value)}
-          placeholder="Oda adını girin"
-        />
-        <button className="create_button" onClick={createRoom}>+</button> {/* onClick işleyicisini ekleyin */}
-        <p className="create_text">OLUŞTUR</p>
-      </div>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+        <button type="submit">Oda Oluştur</button>
+      </form>
     </div>
   );
 };
 
 export default ChatRooms;
+

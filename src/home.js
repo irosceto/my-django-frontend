@@ -2,25 +2,22 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-
-const LoginFormm = () => {
+const LoginForm = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const  navigate = useNavigate();
-
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/token/',
+        'http://localhost:8000/api/login/', // Yeni backend'inizdeki giriş endpoint'inin adresi
         { username, password }
       );
-      const token = response.data.token;
+      const token = response.data.access;
       localStorage.setItem('token', token);
-      navigate('/chat'); // Burada '/chat' sayfasına yönlendirme yapılıyor
+      navigate('/chat');
     } catch (error) {
       setError('Kullanıcı adı veya şifre hatalı.');
     }
@@ -31,7 +28,6 @@ const LoginFormm = () => {
       <h2>Giriş Yap</h2>
       <form onSubmit={handleSubmit}>
         <div>
-
           <label>Kullanıcı Adı:</label>
           <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
         </div>
@@ -46,4 +42,4 @@ const LoginFormm = () => {
   );
 };
 
-export default LoginFormm;
+export default LoginForm;

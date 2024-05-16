@@ -8,8 +8,8 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [email, setEmail] = useState('');
-    const [first_name, setFirstName] = useState('');
-    const [last_name, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
 
     const handleSignUp = async (e) => {
         e.preventDefault(); // Formun varsayılan davranışını engelle
@@ -18,14 +18,14 @@ const SignUp = () => {
                 username,
                 password,
                 email,
-                first_name,
-                last_name
+                first_name: firstName, // backend'e uygun alan adlarını kullan
+                last_name: lastName
             });
             // Başarılı kayıt durumunda yönlendirme yap
             if (response.status === 201) {
                 window.location.href = "/home"; // Yönlendirme
             }
-        } 
+        }
         catch (error) {
             if (error.response.status === 400) {
                 setErrorMessage(error.response.data.message); // Sunucudan dönen özel hata mesajını göster
@@ -64,10 +64,10 @@ const SignUp = () => {
                         </Link>
                     </div>
                 </div>
+                {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} {/* Hata mesajını göster */}
             </div>
         </div>
     );
 };
 
 export default SignUp;
-
