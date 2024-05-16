@@ -17,18 +17,24 @@ const ChatRooms = () => {
       const response = await axios.get('http://localhost:8000/api/chat_rooms/');
       setChatRooms(response.data);
     } catch (error) {
-      console.error('Error fetching chat rooms:', error);
+      console.error('Sohbet odaları alınırken hata oluştu:', error);
     }
   };
 
   const createRoom = async () => {
     try {
+      if (!newRoomName) {
+        setError('Oda adı boş olamaz');
+        return;
+      }
       const response = await axios.post('http://localhost:8000/api/create_chat_room/', { name: newRoomName });
       setNewRoomName('');
       fetchChatRooms(); // Sohbet odalarını güncelle
+      // Yeni oda oluşturulduğunda, oluşturulan odanın bilgilerini alarak listeye ekleyelim
+      setChatRooms(prevChatRooms => [...prevChatRooms, response.data]);
     } catch (error) {
-      setError('Error creating room');
-      console.error('Error creating room:', error);
+      setError('Oda oluşturulurken hata oluştu');
+      console.error('Oda oluşturulurken hata oluştu:', error);
     }
   };
 
@@ -40,7 +46,7 @@ const ChatRooms = () => {
 
       <div className="container"> {/* .container sınıfını ekleyin */}
         <div className="chat-rooms">
-          <h2>Chat Rooms</h2>
+          <h2>Sohbet Odaları</h2>
           <ul>
             {chatRooms.map(room => (
               <li key={room.id}>{room.name}</li>
@@ -51,10 +57,17 @@ const ChatRooms = () => {
 
       <div className="third_div"> {/* .third_div sınıfını ekleyin */}
         <button className="join_button">+</button>
-        <p className="join_text">JOIN</p>
-        <button className="create_button">+</button>
-        <p className="create_text">CREATE</p>
+        <p className="join_text">KATIL</p>
+        <input
+          type="text"
+          value={newRoomName}
+          onChange={(e) => setNewRoomName(e.target.value)}
+          placeholder="Oda adını girin"
+        />
+        <button className="create_button" onClick={createRoom}>+</button> {/* onClick işleyicisini ekleyin */}
+        <p className="create_text">OLUŞTUR</p>
       </div>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };

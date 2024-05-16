@@ -4,6 +4,7 @@ import ProfileForm from "./ProfileForm";
 import SignUp from "./signup";
 import LoginFormm from "./home";
 import Navigate from "./Navigate";
+import ChatRooms from "./chat";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Navigate/>
         <Routes>
           <Route path='/register' element={<SignUp/>} /> 
-          <Route path='/home' element={<LoginFormm/>} /> 
+          <Route path='/home' element={<LoginFormm/>} />
+          <Route path='/chat' element={<ChatRooms/>} />
         </Routes>
       </BrowserRouter>
     </div>
