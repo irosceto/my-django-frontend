@@ -5,6 +5,8 @@ import SignUp from "./signup";
 import LoginFormm from "./home";
 import Navigate from "./Navigate";
 import ChatRooms from "./chat";
+import Chat from "./chat";
+import LoginForm from "./home";
 
 
 function App() {
@@ -15,8 +17,8 @@ function App() {
         <Navigate />
         <Routes>
           <Route path='/register' element={<SignUp/>} /> 
-          <Route path='/home' element={<LoginFormm/>} />
-          <Route path='/chat' element={<ChatRooms/>} />
+          <Route path='/home' element={<LoginForm/>} />
+          <Route path='/chat' element={<Chat/>} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,134 +1,163 @@
-body
-            {
-                margin: 0;
-                padding: 0;
-            }
-            .top_div
-            {
-                background-color: #c8a9a9;
-                height: 15vh;
-                width: 100vw;
-                padding: 0%;
-            }
+body {
+    margin: 0;
+    padding: 0;
+}
 
-            .container
-            {
-                background-color: #eee3e3;
-                width: 12vw;
-                height:85vh;
-                float: left;
-                padding: 0px;
-                margin: 0px;
-            }
-            .third_div
-            {
-                background-color: white;
-                float: left;
-                height: 85vh;
-                width: 86vw;
-                padding: 0px;
-                margin: 0px;
+.top_div {
+    background-color: #c8a9a9;
+    height: 15vh;
+    width: 100vw;
+    padding: 0%;
+}
 
-            }
-            .join_button
-            {
-                background-color: #c8a9a9;
-                float: left;
-                margin-top: 250px;
-                margin-left: 450px;
-                width: 100px;
-                height: 100px;
-                border-radius: 100px;
-                text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 50px;
-                color:white ;
-            }
+.container {
+    background-color: #eee3e3;
+    width: 12vw;
+    height: 85vh;
+    float: left;
+    padding: 0px;
+    margin: 0px;
+}
 
-            .create_button
-            {
-                background-color: #c8a9a9;
-                float: left;
-                margin-top: 250px;
-                margin-left: 300px;
-                width: 100px;
-                height: 100px;
-                border-radius: 100px;
-                text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 50px;
-                color:white ;
-            }
-            .join_text
-            {
-                margin-top: 370px;
-                margin-left: 485px;
-                padding: 0;
-                position: absolute;
+.third_div {
+    background-color: white;
+    float: left;
+    height: 85vh;
+    width: 86vw;
+    padding: 0px;
+    margin: 0px;
+}
 
-            }
-            .create_text
-            {
-                margin-top: 370px;
-                margin-left: 875px;
-                padding: 0;
-                position: absolute;
-            }
-            .profile
-            {
-                background-color: antiquewhite;
-                width: 80px;
-                height: 80px;
-                border-radius: 80px;
-                margin-left: 50px ;
-                position: absolute;
-                margin-top: 10px;
-            }
+.join_button {
+    background-color: #c8a9a9;
+    float: left;
+    margin-top: 250px;
+    margin-left: 450px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: white;
+}
 
-            .chat-rooms {
-                width: 200px;
-                padding: 10px;
-            }
-            .chat-rooms ul
-            {
-                list-style: none;
-                padding: 0;
-            }
-            .chat-rooms li
-            {
-                height: 50px;
+.create_button {
+    background-color: #c8a9a9;
+    float: left;
+    margin-top: 250px;
+    margin-left: 300px;
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    color: white;
+}
 
+.join_text {
+    margin-top: 370px;
+    margin-left: 485px;
+    padding: 0;
+    position: absolute;
+}
 
-            }
-            .chat-rooms ul li
-            {
-            cursor: pointer;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            }
-            .chat-rooms ul li:hover
-            {
-            background-color: white;
-            }
-            button
-            {
-                border: none;
-                outline: none;
-                box-shadow: none;
-            }
-            button:hover
-            {
-                cursor: pointer;
-            }
-            button:active
-            {
-                background-color: #4e1176;
+.create_text {
+    margin-top: 370px;
+    margin-left: 875px;
+    padding: 0;
+    position: absolute;
+}
 
+.profile {
+    background-color: antiquewhite;
+    width: 80px;
+    height: 80px;
+    border-radius: 80px;
+    margin-left: 50px;
+    position: absolute;
+    margin-top: 10px;
+}
 
+.chat-rooms {
+    width: 200px;
+    padding: 10px;
+}
 
-            }
+.chat-rooms ul {
+    list-style: none;
+    padding: 0;
+}
+
+.chat-rooms li {
+    height: 50px;
+}
+
+.chat-rooms ul li {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.chat-rooms ul li:hover {
+    background-color: white;
+}
+
+button {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #4e1176;
+}
+
+.chat-container {
+    display: flex;
+}
+
+.chat-left {
+    flex: 1;
+    padding: 20px;
+}
+
+.chat-right {
+    width: 300px;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+}
+
+.create-room {
+    margin-bottom: 20px;
+}
+
+.create-room input {
+    width: 70%;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.create-room button {
+    padding: 10px 20px;
+}
+
+.chat-right ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.chat-right li {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
