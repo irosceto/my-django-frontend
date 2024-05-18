@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'; // Link bileşenini ekledik
 import './chat.css';
 
 const Chat = () => {
@@ -77,7 +78,8 @@ const Chat = () => {
                     <ul>
                         {rooms.map(room => (
                             <li key={room.id}>
-                                {room.name}
+                                {/* Odalara link ekleme */}
+                                <Link to={`/room/${room.id}`}>{room.name}</Link>
                             </li>
                         ))}
                     </ul>
