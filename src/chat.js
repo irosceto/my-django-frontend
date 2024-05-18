@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './chat.css';
+import { Link } from 'react-router-dom';
+import RoomDetail from './RoomDetail'; 
 
 const Chat = () => {
     const [roomName, setRoomName] = useState('');
     const [error, setError] = useState(null);
     const [rooms, setRooms] = useState([]);
+    const [selectedRoom, setSelectedRoom] = useState(null);
 
     useEffect(() => {
         const fetchChatRooms = async () => {
@@ -51,6 +54,10 @@ const Chat = () => {
         }
     };
 
+    const handleRoomClick = (roomId) => {
+        setSelectedRoom(roomId);
+    };
+
     return (
         <div className="chat-container">
             <div className="top_div">
@@ -77,12 +84,16 @@ const Chat = () => {
                     <ul>
                         {rooms.map(room => (
                             <li key={room.id}>
-                                {room.name}
+                                {/* Odalara link ekleme */}
+                                <button onClick={() => handleRoomClick(room.id)}>{room.name}</button>
                             </li>
                         ))}
                     </ul>
                 </div>
             </div>
+            {selectedRoom && (
+                <RoomDetail roomId={selectedRoom} />
+            )}
         </div>
     );
 };
