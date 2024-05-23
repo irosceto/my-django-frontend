@@ -9,6 +9,10 @@ export default function Navigate(){
             <Link to='/home'>Login</Link>
             <br></br>
             <Link to='/chat'>Chat</Link>
+            <br></br>
+            <Link to='/chat/:roomId'>Message</Link>
+            <br></br>
+
         </div>
     )
 }
