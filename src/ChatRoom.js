@@ -1,66 +1,71 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import './App.css';
+import React, { useState, useEffect, useRef } from 'react';
+import { w3cwebsocket as W3CWebSocket } from 'websocket';
 
-function ChatRoom() {
-  const { roomID } = useParams();
-  const [messages, setMessages] = useState([]);
+const ChatRoom = ({ chatRoomId }) => {
   const [message, setMessage] = useState('');
-  const [ws, setWs] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [isConnected, setIsConnected] = useState(false);
+  const client = useRef(null);
 
   useEffect(() => {
-    const websocket = new WebSocket(`ws://localhost:8000/ws/chat/${roomID}/`);
-    websocket.onopen = () => {
-      console.log('Connected to WebSocket');
+    // WebSocket bağlantısını kur
+    client.current = new W3CWebSocket(`ws://localhost:8000/ws/chat/${chatRoomId}/`);
+
+    client.current.onopen = () => {
+      console.log('WebSocket Client Connected');
+      setIsConnected(true);
     };
-    websocket.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      setMessages(prevMessages => [...prevMessages, message]);
+
+    client.current.onclose = () => {
+      console.log('WebSocket Client Disconnected');
+      setIsConnected(false);
     };
-    websocket.onclose = () => {
-      console.log('Disconnected from WebSocket');
+
+    client.current.onerror = (error) => {
+      console.error('WebSocket Error: ', error);
+      setIsConnected(false);
     };
-    setWs(websocket);
+
+    client.current.onmessage = (message) => {
+      const dataFromServer = JSON.parse(message.data);
+      setMessages((prevMessages) => [...prevMessages, dataFromServer.message]);
+    };
 
     return () => {
-      if (ws) {
-        ws.close();
-      }
+      client.current.close();
     };
-  }, [roomID]);
+  }, [chatRoomId]);
 
-  const sendMessage = () => {
-    if (!ws) {
-      console.error('WebSocket connection is not established');
-      return;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (client.current.readyState === WebSocket.OPEN) {
+      client.current.send(JSON.stringify({ message }));
+      setMessage('');
+    } else {
+      console.error('WebSocket connection is not open');
     }
-    const newMessage = {
-      message: message,
-    };
-    ws.send(JSON.stringify(newMessage));
-    setMessage('');
   };
 
   return (
-    <div className="chat-room">
-      <div className="message-container">
+    <div>
+      <h2>Chat Room {chatRoomId}</h2>
+      <div>
         {messages.map((msg, index) => (
-          <div key={index}>
-            <p><strong>From:</strong> {msg.sender_id}</p>
-            <p>{msg.message}</p>
-          </div>
+          <div key={index}>{msg}</div>
         ))}
       </div>
-      <input
-        type="text"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type your message here"
-      />
-      <button onClick={sendMessage}>Send</button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder={isConnected ? "Mesajınızı yazın..." : "Bağlantı kuruluyor..."}
+          disabled={!isConnected}
+        />
+        <button type="submit" disabled={!isConnected}>Gönder</button>
+      </form>
     </div>
   );
-}
+};
 
 export default ChatRoom;
-

@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-image: url("./images/bak.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.tema {
+    max-width: 300px;
+    justify-content: center; /*yatayda hizalar*/
+    align-items: flex-start; /* Dikey eksende en üste hizala */
+    padding-top: 75px; /* Üstte bir boşluk bırak */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #007bff; /* Mavi sınır */
+    border-radius: 5px;
+    background-color: #f8f9fa; /* Açık arka plan */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hafif gölge */
+  }
+  
+  .tema h2 {
+    margin-bottom: 20px;
+    color: #007bff; /* Mavi başlık metni */
+  }
+  
+  .tema label {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .tema input[type="text"],
+  .tema input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da; /* Gri sınır */
+    border-radius: 3px;
+  }
+  
+  .card button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff; /* Mavi düğme arka planı */
+    color: #fff; /* Beyaz düğme metni */
+    cursor: pointer;
+  }
+  
+  .card button:hover {
+    background-color: #0056b3; /* Daha koyu mavi hover etkisi */
+  }
+  
