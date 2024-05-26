@@ -26,8 +26,8 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
       };
 
       socket.current.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        setMessages(prevMessages => [...prevMessages, message]);
+        const {sender,content} = JSON.parse(event.data);
+        setMessages(prevMessages => [...prevMessages,{sender,content}]);
       };
 
       socket.current.onclose = () => {
@@ -52,23 +52,25 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
 
   const sendMessage = () => {
     if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-      socket.current.send(JSON.stringify({ message: inputMessage }));
+      socket.current.send(JSON.stringify({message: inputMessage}));
       setInputMessage('');
     }
   };
 
-return (
-    <div>
+  return (
+         <div>
       <div>
         {messages.map((msg, index) => (
-          <div key={index}>{msg.content}</div>
+          <div key={index}>
+            <strong>{String(msg.sender)}:</strong> {String(msg.content)}
+          </div>
         ))}
       </div>
       <input
         type="text"
         value={inputMessage}
         onChange={(e) => setInputMessage(e.target.value)}
-        style={{ marginTop: '50px' }} // Burada üst boşluk ekleniyor
+        style={{ marginTop: '50px' }}
       />
       <button onClick={sendMessage}>Send</button>
     </div>
@@ -76,3 +78,8 @@ return (
 };
 
 export default ChatRoom;
+
+
+
+
+
