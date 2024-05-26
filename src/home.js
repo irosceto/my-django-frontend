@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
-const LoginForm = () => {
+const LoginForm = ({setAccessToken}) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -20,6 +20,7 @@ const LoginForm = () => {
             if (response.status === 200) {
                 localStorage.setItem('refresh_token', response.data.refresh);
                 localStorage.setItem('access_token', response.data.access);
+                setAccessToken(response.data.access);
                 navigate("/chat");
             }
         } catch (error) {
