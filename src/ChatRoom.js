@@ -1,85 +1,105 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import './App.css';
+import ChatRoom from './ChatRoom'; // ChatRoom bileşenini içe aktardık
+import UserList from './UserList'; // UserList bileşenini içe aktardık
 
+const App = () => {
+    const [messages, setMessages] = useState([]);
+    const [messageInput, setMessageInput] = useState('');
+    const [error, setError] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(null); // Seçilen kullanıcıyı takip eden bir state ekledik
+    const socketRef = useRef(null);
 
-const ChatRoom = ({ chatRoomId, accessToken }) => {
-  const [messages, setMessages] = useState([]);
-  const [inputMessage, setInputMessage] = useState('');
-  const socket = useRef(null);
+    useEffect(() => {
+        // WebSocket connection creation
+        socketRef.current = new WebSocket('ws://localhost:8000');
 
-  useEffect(() => {
-    if (!accessToken) {
-      console.error('Access token is undefined');
-      return;
-    }
+        // When connection is successful
+        socketRef.current.onopen = () => {
+            console.log('WebSocket connected');
+        };
 
-    const connectWebSocket = () => {
-      if (socket.current && (socket.current.readyState === WebSocket.OPEN || socket.current.readyState === WebSocket.CONNECTING)) {
-        console.log("WebSocket is already open or connecting");
-        return;
-      }
+        // When a message is received
+        socketRef.current.onmessage = (event) => {
+            const message = JSON.parse(event.data);
+            if (message.message) {
+                setMessages((prevMessages) => [...prevMessages, message]);
+            } else {
+                console.log('Unknown message type:', message.type);
+            }
+        };
 
-      socket.current = new WebSocket(`ws://localhost:8000/ws/chat/${chatRoomId}/?access_token=${accessToken}`);
+        // When there is an error
+        socketRef.current.onerror = (error) => {
+            setError('An error occurred: ' + error.message);
+        };
 
-      socket.current.onopen = () => {
-        console.log('WebSocket connected');
-      };
+        // When the connection is closed
+        socketRef.current.onclose = () => {
+            console.log('WebSocket connection closed');
+        };
 
-      socket.current.onmessage = (event) => {
-        const {sender,content} = JSON.parse(event.data);
-        setMessages(prevMessages => [...prevMessages,{sender,content}]);
-      };
+        // Close the connection when the component unmounts
+        return () => {
+            if (socketRef.current) {
+                socketRef.current.close();
+            }
+        };
+    }, []);
 
-      socket.current.onclose = () => {
-        console.log('WebSocket connection closed, attempting to reconnect...');
-        setTimeout(connectWebSocket, 3000); // Attempt to reconnect after 3 seconds
-      };
-
-      socket.current.onerror = (error) => {
-        console.error('WebSocket error', error);
-      };
+    const handleSendMessage = () => {
+        if (socketRef.current && socketRef.current.readyState === WebSocket.OPEN) {
+            socketRef.current.send(JSON.stringify({
+                type: 'message',
+                message: messageInput,
+                sender: 'me', // Or get this dynamically if needed
+                recipient: selectedUser // selectedUser'ı recipient olarak kullandık
+            }));
+            setMessageInput('');
+        } else {
+            setError('WebSocket connection is not open');
+        }
     };
 
-    connectWebSocket();
-
-    // Cleanup WebSocket connection on component unmount
-    return () => {
-      if (socket.current) {
-        socket.current.close();
-      }
+    const handleUserClick = (user) => {
+        // Logic to handle user click
+        console.log('User clicked:', user);
+        setSelectedUser(user); // Seçilen kullanıcıyı güncelliyoruz
     };
-  }, [accessToken, chatRoomId]); // Dependencies include accessToken and chatRoomId
 
-  const sendMessage = () => {
-    if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-      socket.current.send(JSON.stringify({message: inputMessage}));
-      setInputMessage('');
-    }
-  };
-
-  return (
-         <div>
-      <div>
-        {messages.map((msg, index) => (
-          <div key={index}>
-            <strong>{String(msg.sender)}:</strong> {String(msg.content)}
-          </div>
-        ))}
-      </div>
-      <input
-        type="text"
-        value={inputMessage}
-        onChange={(e) => setInputMessage(e.target.value)}
-        style={{ marginTop: '50px' }}
-      />
-      <button onClick={sendMessage}>Send</button>
-    </div>
-  );
+    return (
+        <div className="chat-room-container">
+            <div className="top_div">
+                <div className="profile"></div>
+            </div>
+            <div className="container">
+                <UserList onUserClick={handleUserClick} />
+            </div>
+            <div className="third_div">
+                {selectedUser ? ( // Eğer bir kullanıcı seçilmişse ChatRoom'u render ediyoruz
+                    <ChatRoom chatRoomId={selectedUser.id} /> // chatRoomId olarak kullanıcının id'sini iletiyoruz
+                ) : (
+                    <div className="messages">
+                        {messages.map((message, index) => (
+                            <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
+                                <span className="content">{message.message}</span>
+                            </div>
+                        ))}
+                    </div>
+                )}
+                <div className="input-container">
+                    <input
+                        type="text"
+                        value={messageInput}
+                        onChange={(e) => setMessageInput(e.target.value)}
+                        placeholder="Mesajınızı yazın"
+                    />
+                    <button onClick={handleSendMessage}>Gönder</button>
+                </div>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+            </div>
+        </div>
+    );
 };
 
-export default ChatRoom;
-
-
-
-
-
+export default App;
