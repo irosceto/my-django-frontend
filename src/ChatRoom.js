@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 const ChatRoom = ({ chatRoomId, accessToken }) => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -11,36 +12,39 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
       console.error('Access token is undefined');
       return;
     }
-  
+
     const connectWebSocket = () => {
       if (socket.current && (socket.current.readyState === WebSocket.OPEN || socket.current.readyState === WebSocket.CONNECTING)) {
         console.log("WebSocket is already open or connecting");
         return;
       }
-  
+
       socket.current = new WebSocket(`ws://localhost:8000/ws/chat/${chatRoomId}/?access_token=${accessToken}`);
-  
+
       socket.current.onopen = () => {
         console.log('WebSocket connected');
       };
-  
+
       socket.current.onmessage = (event) => {
-        const { sender, content } = JSON.parse(event.data);
-        setMessages(prevMessages => [...prevMessages, { sender, content }]);
+        const data = JSON.parse(event.data);
+        console.log("data", data); // Bu satırı ekleyin
+        if (data.sender != "Anonymous")
+          setMessages(prevMessages => [...prevMessages, { sender: data.sender, content: data.content }]);
       };
-  
+      
+
       socket.current.onclose = () => {
         console.log('WebSocket connection closed, attempting to reconnect...');
         setTimeout(connectWebSocket, 3000); // Attempt to reconnect after 3 seconds
       };
-  
+
       socket.current.onerror = (error) => {
         console.error('WebSocket error', error);
       };
     };
-  
+
     connectWebSocket();
-  
+
     // Cleanup WebSocket connection on component unmount
     return () => {
       if (socket.current) {
@@ -48,7 +52,7 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
       }
     };
   }, [accessToken, chatRoomId]); // Dependencies include accessToken and chatRoomId
-  
+
   const sendMessage = () => {
     if (socket.current && socket.current.readyState === WebSocket.OPEN) {
       socket.current.send(JSON.stringify({ message: inputMessage }));
@@ -56,7 +60,7 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
       fetchRoomUsers(); // Call fetchRoomUsers after sending a message
     }
   };
-  
+
   const fetchRoomUsers = async () => {
     try {
       const response = await fetch(`/api/chat_rooms/${chatRoomId}/users/`, {
@@ -74,35 +78,38 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
     } catch (error) {
       setError('Error fetching room users: ' + error.message);
     }
-  };
   
+  };
+
   return (
     <div className="chat-room-container">
-        <div className="top_div">
-            <div className="profile"></div>
+      <div className="top_div">
+        <div className="profile"></div>
+      </div>
+      <div className="container">
+        {/* Room users or other content can go here */}
+      </div>
+      <div className="third_div">
+        <div className="messages">
+  {messages.map((message, index) => (
+    <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
+      <span className="sender">{String(message.sender)}:</span>
+      <span className="content">{String(message.content)}</span>
+    </div>
+  ))}
+</div>
+
+        <div className="input-container">
+          <input
+            type="text"
+            value={inputMessage}
+            onChange={(e) => setInputMessage(e.target.value)}
+            placeholder="Mesajınızı yazın"
+          />
+          <button onClick={sendMessage}>Gönder</button>
         </div>
-        <div className="container">
-            
-        </div>
-        <div className="third_div">
-            <div className="messages">
-                {messages.map((message, index) => (
-                    <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
-                        <span className="content">{message.content}</span>
-                    </div>
-                ))}
-            </div>
-            <div className="input-container">
-                <input
-                    type="text"
-                    value={inputMessage}
-                    onChange={(e) => setInputMessage(e.target.value)}
-                    placeholder="Mesajınızı yazın"
-                />
-                <button onClick={sendMessage}>Gönder</button>
-            </div>
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-        </div>
+        {error && <div style={{ color: 'red' }}>{error}</div>}
+      </div>
     </div>
   );
 };
