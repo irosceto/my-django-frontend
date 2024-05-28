@@ -1,34 +1,156 @@
-.chat-room-container {
-  display: flex;
-  flex-direction: column;
+body {
+  background-color: #eee3e3;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
-.message-container {
-  margin-bottom: 10px; /* Mesajlar arasına boşluk ekle */
+.chat-room-container {
+  height: 100vh;
+}
+
+.top_div {
+  background-color: #c8a9a9;
+  height: 15vh;
+  width: 100vw;
+  padding: 0%;
+}
+
+.container {
+  background-color: #eee3e3;
+  width: 12vw;
+  height: 85vh;
+  float: left;
+  padding: 0px;
+  margin: 0px;
+}
+
+.third_div {
+  background-color: white;
+  float: left;
+  height: 85vh;
+  width: 85vw;
+  padding: 10px;
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-y: auto;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .message {
-  border: 1px solid #ccc;
-  padding: 5px;
-  margin-bottom: 5px; /* Her mesajın altına boşluk ekle */
+  max-width: 50%;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  color: white;
+  display: inline-block;
+}
+
+.message.sent {
+  background-color: #c8a9a9;
+  align-self: flex-end;
+}
+
+.message.received {
+  background-color: #4e1176;
+  align-self: flex-start;
 }
 
 .input-container {
   display: flex;
-  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0;
 }
 
-.message-input {
-  flex: 1; /* Giriş kutusunu genişlet */
-  margin-right: 10px; /* Giriş kutusu ile gönder düğmesi arasına boşluk ekle */
+input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
-.send-button {
-  padding: 5px 10px;
-  background-color: #007bff;
-  color: #fff;
+button {
+  padding: 10px 20px;
   border: none;
+  border-radius: 5px;
+  background-color: #4e1176;
+  color: white;
+}
+
+button:hover {
+  background-color: #3e0e5c;
+}
+
+button:active {
+  background-color: #4e1176;
+}
+
+.profile {
+  background-color: antiquewhite;
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
+  margin-left: 50px;
+  position: absolute;
+  margin-top: 10px;
+}
+
+.chat-rooms {
+  width: 200px;
+  padding: 10px;
+}
+
+.chat-rooms ul {
+  list-style: none;
+  padding: 0;
+}
+
+.chat-rooms li {
+  height: 50px;
+}
+
+.chat-rooms ul li {
+  cursor: pointer;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.chat-rooms ul li:hover {
+  background-color: white;
+}
+
+button {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+/* New styles for back button and user list */
+.back-button {
+  background-color: #4e1176;
+  color: white;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
 
+.back-button:hover {
+  background-color: #3e0e5c;
+}
 
+.user-list {
+  margin-top: 20px;
+}
