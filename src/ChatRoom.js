@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
-
 const ChatRoom = ({ chatRoomId, accessToken }) => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -26,8 +25,8 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
       };
 
       socket.current.onmessage = (event) => {
-        const {sender,content} = JSON.parse(event.data);
-        setMessages(prevMessages => [...prevMessages,{sender,content}]);
+        const { sender, content } = JSON.parse(event.data);
+        setMessages(prevMessages => [...prevMessages, { sender, content }]);
       };
 
       socket.current.onclose = () => {
@@ -52,13 +51,13 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
 
   const sendMessage = () => {
     if (socket.current && socket.current.readyState === WebSocket.OPEN) {
-      socket.current.send(JSON.stringify({message: inputMessage}));
+      socket.current.send(JSON.stringify({ message: inputMessage }));
       setInputMessage('');
     }
   };
 
   return (
-         <div>
+    <div>
       <div>
         {messages.map((msg, index) => (
           <div key={index}>
@@ -78,8 +77,3 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
 };
 
 export default ChatRoom;
-
-
-
-
-
