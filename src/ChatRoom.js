@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+
 const ChatRoom = ({ chatRoomId, accessToken }) => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const socket = useRef(null);
   const [roomUsers, setRoomUsers] = useState([]);
   const [error, setError] = useState('');
+  
 
   useEffect(() => {
     if (!accessToken) {
@@ -63,32 +65,57 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
 
   const fetchRoomUsers = async () => {
     try {
-      const response = await fetch(`/api/chat_rooms/${chatRoomId}/users/`, {
+      const response = await fetch(`http://localhost:8000/api/chat_rooms/${chatRoomId}/members/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         }
       });
-      if (!response.ok) {
-        throw new Error('Failed to fetch room users');
-      }
-      const data = await response.json();
+
+      console.log("Constresponse", response);
+      const text = await response.text(); // Yanıtı JSON olarak işlemeye çalışmadan önce metin olarak alalım
+      console.log("Response Text:", text);
+
+      
+      const data = JSON.parse(text); // JSON.parse kullanarak yanıtı JSON'a çevirelim
+      console.log("Response Data:", data);
       setRoomUsers(data);
     } catch (error) {
-      setError('Error fetching room users: ' + error.message);
+      console.error('Error fetching room users:', error.message);
     }
-  
-  };
+};
+
 
   return (
     <div className="chat-room-container">
       <div className="top_div">
-        <div className="profile"></div>
+        <div className="profile">
+          
+        </div>
+        
       </div>
       <div className="container">
-        {/* Room users or other content can go here */}
+  {messages.map((message, index) => {
+    let showSender = true;
+    if (index > 0) {
+      for (let i = index - 1; i >= 0; i--) {
+        if (messages[i].sender === message.sender) {
+          showSender = false;
+          break;
+        }
+      }
+    }
+    return (
+      <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
+        {showSender && <span className="sender">{String(message.sender)}</span>}
+       
       </div>
+    );
+  })}
+</div>
+
+
       <div className="third_div">
         <div className="messages">
   {messages.map((message, index) => (
