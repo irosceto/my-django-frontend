@@ -5,6 +5,7 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
   const [inputMessage, setInputMessage] = useState('');
   const socket = useRef(null);
   const [roomUsers, setRoomUsers] = useState([]);
+  const [members, setMembers] = useState([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -62,56 +63,66 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
   };
 
   const fetchRoomUsers = async () => {
-    try {
-      const response = await fetch(`/api/chat_rooms/${chatRoomId}/users/`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        }
-      });
-      if (!response.ok) {
-        throw new Error('Failed to fetch room users');
+     try {
+    const response = await fetch(`/api/chat_rooms/${chatRoomId}/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`
       }
-      const data = await response.json();
-      setRoomUsers(data);
-    } catch (error) {
-      setError('Error fetching room users: ' + error.message);
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to fetch room users');
     }
-  
-  };
+
+    const data = await response.json();
+    setMembers(data);
+  } catch (error) {
+    console.error('Error fetching room users:', error);
+    setError('Oda kullanıcıları alınırken hata: ' + error.message);
+  }
+};
 
   return (
-    <div className="chat-room-container">
-      <div className="top_div">
-        <div className="profile"></div>
-      </div>
-      <div className="container">
-        {/* Room users or other content can go here */}
-      </div>
-      <div className="third_div">
-        <div className="messages">
-  {messages.map((message, index) => (
-    <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
-      <span className="sender">{String(message.sender)}:</span>
-      <span className="content">{String(message.content)}</span>
+       <div className="chat-room-container">
+    <div className="top_div">
+      <div className="profile"></div>
     </div>
-  ))}
-</div>
+    <div className="container">
+      {/* Room users or other content can go here */}
+      <h2>Oda Kullanıcıları</h2>
+      <ul>
 
-        <div className="input-container">
-          <input
-            type="text"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Mesajınızı yazın"
-          />
-          <button onClick={sendMessage}>Gönder</button>
-        </div>
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-      </div>
+          {members.map((member, index) => (
+            <li key={index}>{member}</li>
+          ))}
+      </ul>
     </div>
-  );
+    <div className="third_div">
+      <div className="messages">
+        {messages.map((message, index) => (
+          <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
+            <span className="sender">{String(message.sender)}:</span>
+            <span className="content">{String(message.content)}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="input-container">
+        <input
+          type="text"
+          value={inputMessage}
+          onChange={(e) => setInputMessage(e.target.value)}
+          placeholder="Mesajınızı yazın"
+        />
+        <button onClick={sendMessage}>Gönder</button>
+      </div>
+      {error && <div style={{ color: 'red' }}>{error}</div>}
+    </div>
+  </div>
+);
+
 };
 
 export default ChatRoom;
