@@ -22,7 +22,7 @@ const UserList = ({ onUserClick }) => {
       <h2>Kullanıcılar</h2>
       <ul>
         {users.map(user => (
-          <li key={user.id} onClick={() => onUserClick(user)}>
+          <li key={user.id} onClick={() => onUserClick(user.accessToken)}>
             {user.username}
           </li>
         ))}
