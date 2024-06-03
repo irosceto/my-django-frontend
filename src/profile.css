@@ -1,6 +1,53 @@
-.round-image-container {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
+/* Profile.css */
+
+.profile-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.profile-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.profile-container p {
+  margin-bottom: 10px;
+}
+
+.profile-container form {
+  margin-bottom: 20px;
+}
+
+.profile-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.profile-container input[type="file"] {
+  margin-bottom: 10px;
+}
+
+.profile-container button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-container button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.profile-container img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+.profile_,image{
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+
 }
