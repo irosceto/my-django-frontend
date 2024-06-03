@@ -16,7 +16,8 @@ function App() {
           <Route path="/home" element={<LoginForm setAccessToken={setAccessToken} />} />
           <Route path="/chat" element={accessToken ? <Chat accessToken={accessToken} /> : <Navigate to="/home" />} />
           <Route path="/chat/:roomId" element={accessToken ? <ChatRoomWrapper accessToken={accessToken} /> : <Navigate to="/home" />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={accessToken ? <Profile accessToken={accessToken} /> : <Navigate to="/home" />} />
+
         </Routes>
       </BrowserRouter>
     </div>
