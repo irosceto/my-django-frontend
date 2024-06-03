@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './profile.css'; 
 
 const Profile = ({ accessToken, onProfilePictureChange }) => {
   const [profile, setProfile] = useState({});
@@ -7,6 +8,7 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
     profile_picture: null,
   });
   const [errors, setErrors] = useState({});
+  const [profilePictureUrl, setProfilePictureUrl] = useState(null); // Yeni state tanımı
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -19,6 +21,7 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
         setProfile(response.data);
         if (response.data.profile_picture) {
           onProfilePictureChange(response.data.profile_picture);
+          convertAndSetProfilePictureUrl(response.data.profile_picture);
         }
       } catch (error) {
         console.error("Profil verileri çekilirken bir hata oluştu!", error);
@@ -33,6 +36,20 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
       ...formData,
       profile_picture: e.target.files[0]
     });
+  };
+
+  const convertAndSetProfilePictureUrl = async (imageUrl) => {
+    try {
+      const response = await axios.get(imageUrl, {
+        responseType: 'blob'
+      });
+
+      const blob = response.data;
+      const convertedUrl = URL.createObjectURL(blob);
+      setProfilePictureUrl(convertedUrl);
+    } catch (error) {
+      console.error("Profil resmi dönüştürülürken bir hata oluştu!", error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -53,6 +70,7 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
       setProfile(response.data);
       if (response.data.profile_picture) {
         onProfilePictureChange(response.data.profile_picture);
+        convertAndSetProfilePictureUrl(response.data.profile_picture);
       }
     } catch (error) {
       if (error.response) {
@@ -80,9 +98,9 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
         </div>
         <button type="submit">Kaydet</button>
       </form>
-      {profile.profile_picture && (
-        <div>
-          <img src={`http://localhost:8000${profile.profile_picture}`} alt="Profil Resmi" />
+      {profilePictureUrl && (
+        <div className='profil_image'>
+          <img src={profilePictureUrl} alt="Profil Resmi" />
         </div>
       )}
     </div>
@@ -90,5 +108,3 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
 };
 
 export default Profile;
-
-
