@@ -80,13 +80,15 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
   };
 
   return (
-    <div>
-      <h1>Profil</h1>
-      <div>
-        <p>Kullanıcı Adı: {profile.username}</p>
-        <p>Email: {profile.email}</p>
-      </div>
-      <form onSubmit={handleSubmit}>
+    <div className="profile-container">
+      <div className="profile-info">
+        <h1>Profil</h1>
+        <div>
+          <p>Kullanıcı Adı: {profile.username}</p>
+          <p>Email: {profile.email}</p>
+        </div>
+      
+      <form onSubmit={handleSubmit} className="profile-form">
         <div>
           <label>Profil Resmi:</label>
           <input
@@ -98,8 +100,9 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
         </div>
         <button type="submit">Kaydet</button>
       </form>
+      </div>
       {profilePictureUrl && (
-        <div className='profil_image'>
+        <div className='profile-image'>
           <img src={profilePictureUrl} alt="Profil Resmi" />
         </div>
       )}

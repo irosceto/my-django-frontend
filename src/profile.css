@@ -1,53 +1,42 @@
-/* Profile.css */
-
+body {
+  background-color: #ffffff; /* Sayfa arka plan rengi */
+  
+}
 .profile-container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Öğeleri dikey olarak ortalar */
+  padding: 20px; /* Kenar boşlukları */
+  margin-top: 125px;
 }
 
-.profile-container h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
+.profile-info {
+  width: 40%; /* Profil bilgilerinin genişliği */
+  margin-left: 725px; /* Profil bilgilerini sağa hizalar */
 }
 
-.profile-container p {
-  margin-bottom: 10px;
+.profile-form {
+  width: 50%; /* Formun genişliği */
+  margin-top: 20px;
 }
 
-.profile-container form {
-  margin-bottom: 20px;
+.profile-image {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  margin-right: 30px; 
 }
+ 
+  
 
-.profile-container label {
-  display: block;
-  margin-bottom: 10px;
-}
 
-.profile-container input[type="file"] {
-  margin-bottom: 10px;
-}
-
-.profile-container button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-}
-
-.profile-container button[type="submit"]:hover {
-  background-color: #0056b3;
-}
-
-.profile-container img {
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
-}
-.profile_,image{
-  max-width: 100%;
-  height: auto;
-  margin-top: 10px;
-
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Resmin tamamının görünmesini sağlar */
 }
