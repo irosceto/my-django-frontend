@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
+
 const ChatRoom = ({ chatRoomId, accessToken }) => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
@@ -7,6 +8,7 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
   const [roomUsers, setRoomUsers] = useState([]);
   const [members, setMembers] = useState([]);
   const [error, setError] = useState('');
+  
 
   useEffect(() => {
     if (!accessToken) {
@@ -63,6 +65,7 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
   };
 
   const fetchRoomUsers = async () => {
+
      try {
     const response = await fetch(`/api/chat_rooms/${chatRoomId}/`, {
       method: 'GET',
@@ -88,6 +91,7 @@ const ChatRoom = ({ chatRoomId, accessToken }) => {
        <div className="chat-room-container">
     <div className="top_div">
       <div className="profile"></div>
+
     </div>
     <div className="container">
       {/* Room users or other content can go here */}

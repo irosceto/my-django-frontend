@@ -51,6 +51,10 @@ const Chat = ({ accessToken }) => {
   };
 
   return (
+    <div>
+      <div>
+        <Link to='/profile'>Profil Sayfasi</Link>
+      </div>
     <div className="chat-container">
       <div className="top_div">
         {/* İlgili HTML içeriği buraya gelecek */}
@@ -84,6 +88,7 @@ const Chat = ({ accessToken }) => {
           </ul>
         </div>
       </div>
+    </div>
     </div>
   );
 };

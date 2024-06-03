@@ -101,8 +101,7 @@ button:active {
   height: 80px;
   border-radius: 80px;
   margin-left: 50px;
-  position: absolute;
-  margin-top: 10px;
+  
 }
 
 .chat-rooms {

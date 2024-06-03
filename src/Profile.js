@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Profile = ({ accessToken }) => {
+
     const [profile, setProfile] = useState({});
     const [formData, setFormData] = useState({
         profile_picture: null,
@@ -79,10 +80,9 @@ const Profile = ({ accessToken }) => {
                     <img src={`http://localhost:8000${profile.profile_picture}`} alt="Profil Resmi" />
                 </div>
             )}
+
         </div>
     );
 };
 
 export default Profile;
-
-
