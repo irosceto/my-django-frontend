@@ -96,14 +96,32 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
           {profilePicture && <img src={`http://localhost:8000${profilePicture}`} alt="Profil Resmi" />}
         </div>
       </div>
+
+
+
       <div className="containerbox">
-        <h2>Oda Kullanıcıları</h2>
-        <ul>
-          {members.map((member, index) => (
-            <li key={index}>{member}</li>
-          ))}
-        </ul>
+      {messages.map((message, index) => {
+    let showSender = true;
+    if (index > 0) {
+      for (let i = index - 1; i >= 0; i--) {
+        if (messages[i].sender === message.sender) {
+          showSender = false;
+          break;
+        }
+      }
+    }
+    return (
+      <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
+        {showSender && <span className="sender">{String(message.sender)}</span>}
+       
       </div>
+    );
+  })}
+      </div>
+
+
+
+
       <div className="thirdbox_div">
         <div className="messages">
           {messages.map((message, index) => (
