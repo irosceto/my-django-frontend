@@ -9,14 +9,14 @@ body {
   height: 100vh;
 }
 
-.top_div {
+.topbox_div {
   background-color: #c8a9a9;
   height: 15vh;
   width: 100vw;
   padding: 0%;
 }
 
-.container {
+.containerbox {
   background-color: #eee3e3;
   width: 12vw;
   height: 85vh;
@@ -25,7 +25,7 @@ body {
   margin: 0px;
 }
 
-.third_div {
+.thirdbox_div {
   background-color: white;
   float: left;
   height: 85vh;
@@ -79,7 +79,7 @@ input {
   margin-right: 10px;
 }
 
-button {
+.buttonsend {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -87,11 +87,11 @@ button {
   color: white;
 }
 
-button:hover {
+.buttonsend:hover {
   background-color: #3e0e5c;
 }
 
-button:active {
+.buttonsend:active {
   background-color: #4e1176;
 }
 
@@ -132,7 +132,7 @@ button:active {
   background-color: white;
 }
 
-button {
+.buttonsend {
   border: none;
   outline: none;
   box-shadow: none;
