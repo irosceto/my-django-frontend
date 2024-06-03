@@ -91,20 +91,38 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
 
   return (
     <div className="chat-room-container">
-      <div className="top_div">
+      <div className="topbox_div">
         <div className="profile" onClick={handleProfileClick} style={{ cursor: 'pointer' }}>
           {profilePicture && <img src={`http://localhost:8000${profilePicture}`} alt="Profil Resmi" />}
         </div>
       </div>
-      <div className="container">
-        <h2>Oda Kullanıcıları</h2>
-        <ul>
-          {members.map((member, index) => (
-            <li key={index}>{member}</li>
-          ))}
-        </ul>
+
+
+
+      <div className="containerbox">
+      {messages.map((message, index) => {
+    let showSender = true;
+    if (index > 0) {
+      for (let i = index - 1; i >= 0; i--) {
+        if (messages[i].sender === message.sender) {
+          showSender = false;
+          break;
+        }
+      }
+    }
+    return (
+      <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
+        {showSender && <span className="sender">{String(message.sender)}</span>}
+       
       </div>
-      <div className="third_div">
+    );
+  })}
+      </div>
+
+
+
+
+      <div className="thirdbox_div">
         <div className="messages">
           {messages.map((message, index) => (
             <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
@@ -121,7 +139,7 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Mesajınızı yazın"
           />
-          <button onClick={sendMessage}>Gönder</button>
+          <button className='buttonsend' onClick={sendMessage}>Gönder</button>
         </div>
         {error && <div style={{ color: 'red' }}>{error}</div>}
       </div>
