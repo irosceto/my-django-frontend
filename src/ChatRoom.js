@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './chatroom.css'; 
 
 const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
   const [messages, setMessages] = useState([]);
