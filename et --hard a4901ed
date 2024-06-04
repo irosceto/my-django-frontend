@@ -1,0 +1,37 @@
+[33ma4901ed[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{0}: reset: moving to a4901ed
+[33m920aa08[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33m920aa08[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{2}: merge origin/master: Fast-forward
+[33ma4901ed[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m HEAD@{3}: commit: Odadaki kullanıcılara link ekleme yapıldı
+[33m272c74e[m HEAD@{4}: merge origin/seyma: Merge made by the 'ort' strategy.
+[33m63f6b71[m HEAD@{5}: merge origin/master: Fast-forward
+[33m4e7974d[m HEAD@{6}: merge origin/master: Fast-forward
+[33mdd856a1[m HEAD@{7}: commit (amend): Merge remote-tracking branch 'origin/master'
+[33m24ed6dc[m HEAD@{8}: commit (merge): Merge remote-tracking branch 'origin/master'
+[33me4d702e[m HEAD@{9}: commit: en son
+[33m33af358[m HEAD@{10}: commit: en son
+[33m995a0d5[m HEAD@{11}: commit (merge): Merge branch 'seyma' of https://github.com/irosceto/my-django-frontend
+[33m6243138[m HEAD@{12}: commit: en son
+[33meab5c2a[m HEAD@{13}: commit: en son
+[33m7b5261d[m HEAD@{14}: commit: en son
+[33m58be915[m HEAD@{15}: commit: en son
+[33md909dcb[m HEAD@{16}: commit: en son
+[33mbf8a845[m[33m ([m[1;31morigin/nur[m[33m)[m HEAD@{17}: merge origin/master: Fast-forward
+[33m81d04fd[m HEAD@{18}: pull --no-stat -v --progress origin Aysenur: Fast-forward
+[33m2d8a09e[m HEAD@{19}: pull --no-stat -v --progress origin Aysenur: Fast-forward
+[33mc1605cf[m HEAD@{20}: commit: en son
+[33m4d3e748[m HEAD@{21}: commit: en son
+[33m23a60f2[m HEAD@{22}: checkout: moving from Aysenur to master
+[33m4f461fb[m[33m ([m[1;32mAysenur[m[33m)[m HEAD@{23}: checkout: moving from master to Aysenur
+[33m23a60f2[m HEAD@{24}: merge origin/master: Fast-forward
+[33m3d19029[m HEAD@{25}: checkout: moving from Aysenur to master
+[33m4f461fb[m[33m ([m[1;32mAysenur[m[33m)[m HEAD@{26}: checkout: moving from master to Aysenur
+[33m3d19029[m HEAD@{27}: commit: en son
+[33mad35d0b[m HEAD@{28}: checkout: moving from Aysenur to master
+[33m4f461fb[m[33m ([m[1;32mAysenur[m[33m)[m HEAD@{29}: commit: en son
+[33m92ef57d[m HEAD@{30}: checkout: moving from master to Aysenur
+[33mad35d0b[m HEAD@{31}: merge origin/master: Fast-forward
+[33m0bd9a00[m HEAD@{32}: commit: chat.css ve chat.js oluşturuldu
+[33mbd3fc08[m HEAD@{33}: merge origin/master: Fast-forward
+[33m85f3e4a[m HEAD@{34}: merge origin/master: Fast-forward
+[33mb250919[m HEAD@{35}: commit: Sign up daki sorun düzeltildi home.js artık yeni login.js token eklendi
+[33m028f6b6[m HEAD@{36}: clone: from https://github.com/irosceto/my-django-frontend.git

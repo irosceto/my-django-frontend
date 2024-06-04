@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import {BrowserRouter, Routes, Route, Navigate, useParams} from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import SignUp from './signup';
 import LoginForm from './home';
 import Chat from './chat';
 import ChatRoom from './ChatRoom';
 import Profile from './Profile';
+import UserProfile from "./UserProfile";
+
 
 function App() {
   const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'));
@@ -19,6 +21,12 @@ function App() {
           <Route path="/chat" element={accessToken ? <Chat accessToken={accessToken} /> : <Navigate to="/home" />} />
           <Route path="/chat/:roomId" element={accessToken ? <ChatRoomWrapper accessToken={accessToken} profilePicture={profilePicture} /> : <Navigate to="/home" />} />
           <Route path="/profile" element={accessToken ? <Profile accessToken={accessToken} onProfilePictureChange={setProfilePicture} /> : <Navigate to="/home" />} />
+            <Route path="/profile/:username" element={<UserProfile accessToken={accessToken} />} /> {/* /profile/:username rotası için UserProfile bileşenini belirtin */}
+
+
+
+
+
         </Routes>
       </BrowserRouter>
     </div>
@@ -27,7 +35,6 @@ function App() {
 
 const ChatRoomWrapper = ({ accessToken, profilePicture }) => {
   const { roomId } = useParams();
-
   return <ChatRoom chatRoomId={roomId} accessToken={accessToken} profilePicture={profilePicture} />;
 };
 

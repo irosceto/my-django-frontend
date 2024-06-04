@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './chatroom.css'; 
+import './chatroom.css';
 
 const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
   const [messages, setMessages] = useState([]);
@@ -88,6 +88,9 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
   const handleProfileClick = () => {
     navigate('/profile');
   };
+  const handleUserClick = (username) => {
+    navigate(`/profile/${username}`)
+  };
 
   return (
     <div className="chat-room-container">
@@ -100,7 +103,6 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
 
 
       <div className="containerbox">
-
         <p className='usershead'>Oda Kullanıcıları</p>
       {messages.map((message, index) => {
     let showSender = true;
@@ -115,13 +117,14 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
     return (
       <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'accesed'}`}
       style={{ display: showSender ? 'block' : 'none' }}>
-        {showSender && <span className="sender">{String(message.sender)}</span>}
-        
-        
-       
+        {showSender && <span className="sender" onClick={() => handleUserClick(message.sender)}>{String(message.sender)}</span>}
+
       </div>
     );
   })}
+
+
+
       </div>
 
 
