@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './profile.css'; 
 
 const Profile = ({ accessToken, onProfilePictureChange }) => {
@@ -80,7 +81,12 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
   };
 
   return (
-    <div className="profile-container">
+    <div>
+      <div className="yukari">
+        <div className="geriii">
+        <Link to="/chat" style={{ cursor: 'pointer', float: 'right', textDecoration: 'none' }}>Geri</Link>
+        </div>
+        <div className="profile-container">
       <div className="profile-info">
         <h1>Profil</h1>
         <div>
@@ -107,6 +113,10 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
         </div>
       )}
     </div>
+        
+      </div>
+    </div>
+    
   );
 };
 

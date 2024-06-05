@@ -32,3 +32,27 @@ body {
   height: 100%;
   object-fit: cover; /* Resmin tamamının görünmesini sağlar */
 }
+
+.gerii {
+  float: right;
+  margin-top: 0px;
+  margin-right: 40px;
+}
+
+.gerii a {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px; /* Buton boyutunu ayarlayın */
+  border: 1px solid #4e1176; /* Mor */
+  border-radius: 4px; /* Köşeleri yuvarla */
+  background-color: #4e1176; /* Mor */
+  color: #FFFFFF; /* Beyaz */
+  transition: background-color 0.3s, color 0.3s; /* Geçiş efekti */
+}
+
+.gerii a:hover {
+  background-color: #eee3e3;
+  color: #4e1176; /* Mor */
+}
+

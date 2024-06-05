@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './chatroom.css';
 
 const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
@@ -10,6 +11,7 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
   const [members, setMembers] = useState([]);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!accessToken) {
@@ -91,6 +93,7 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
   const handleUserClick = (username) => {
     navigate(`/profile/${username}`)
   };
+  
 
   return (
     <div className="chat-room-container">
@@ -98,6 +101,10 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
         <div className="profile" onClick={handleProfileClick} style={{ cursor: 'pointer' }}>
           {profilePicture && <img src={`http://localhost:8000${profilePicture}`} alt="Profil Resmi" />}
         </div>
+        <div className="geri">
+        <Link to="/chat" style={{ cursor: 'pointer', float: 'right', textDecoration: 'none' }}>Geri</Link>
+        </div>
+        
       </div>
 
 
@@ -118,18 +125,10 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
       <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'accesed'}`}
       style={{ display: showSender ? 'block' : 'none' }}>
         {showSender && <span className="sender" onClick={() => handleUserClick(message.sender)}>{String(message.sender)}</span>}
-
       </div>
     );
   })}
-
-
-
       </div>
-
-
-
-
       <div className="thirdbox_div">
         <div className="messages">
           {messages.map((message, index) => (
