@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './UserProfile.css';
 
 const UserProfile = ({ accessToken }) => {
@@ -29,18 +30,28 @@ const UserProfile = ({ accessToken }) => {
   }
 
   return (
-    <div className="en-dis">
-      <div className="bilgi">
-      <h1>Kullanıcı Profili</h1>
-      <p>Kullanıcı Adı: {profile.username}</p>
-      <p>Email: {profile.email}</p>
+    <div>
+      <div className="ust">
+        <div className="gerii">
+        <Link to="/chat/:roomId" style={{ cursor: 'pointer', float: 'right', textDecoration: 'none' }}>Geri</Link>
+        </div>
+        
       </div>
-      {profile.profile_picture && (
+      <div className="en-dis">
+        <div className="bilgi">
+          <h1>Kullanıcı Profili</h1>
+          <p>Kullanıcı Adı: {profile.username}</p>
+          <p>Email: {profile.email}</p>
+        </div>
+        {profile.profile_picture && (
         <div className="resim">
           <img src={profile.profile_picture} alt="Profil Resmi" />
-        </div>  
-      )}
+          </div>  
+    )}
+  </div>
+
     </div>
+    
   );
 };
 

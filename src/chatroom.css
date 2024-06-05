@@ -157,21 +157,29 @@ input {
   box-shadow: none;
 }
 
-/* New styles for back button and user list */
-.back-button {
-  background-color: #4e1176;
-  color: white;
-  padding: 10px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  background-color: #3e0e5c;
-}
-
 .user-list {
-  margin-top: 20px;
+  margin-top: 30px;
+}
+
+.geri {
+  float: right;
+  margin-top: 40px;
+  margin-right: 40px;
+}
+
+.geri a {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px; /* Buton boyutunu ayarlayın */
+  border: 1px solid #4e1176; /* Mor */
+  border-radius: 4px; /* Köşeleri yuvarla */
+  background-color: #4e1176; /* Mor */
+  color: #FFFFFF; /* Beyaz */
+  transition: background-color 0.3s, color 0.3s; /* Geçiş efekti */
+}
+
+.geri a:hover {
+  background-color: #eee3e3;
+  color: #4e1176; /* Mor */
 }
