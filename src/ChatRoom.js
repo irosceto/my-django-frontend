@@ -88,9 +88,10 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
   const handleProfileClick = () => {
     navigate('/profile');
   };
-  const handleUserClick = (userId) => {
-    navigate(`/profile/${userId}`)
+  const handleUserClick = (username) => {
+    navigate(`/profile/${username}`);
   };
+  
 
   return (
     <div className="chat-room-container">

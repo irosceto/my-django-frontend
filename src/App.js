@@ -5,6 +5,7 @@ import LoginForm from './home';
 import Chat from './chat';
 import ChatRoom from './ChatRoom';
 import Profile from './Profile';
+import UserListProfile from './UserListProfile';
 
 function App() {
   const [accessToken, setAccessToken] = useState(localStorage.getItem('access_token'));
@@ -19,7 +20,7 @@ function App() {
           <Route path="/chat" element={accessToken ? <Chat accessToken={accessToken} /> : <Navigate to="/home" />} />
           <Route path="/chat/:roomId" element={accessToken ? <ChatRoomWrapper accessToken={accessToken} profilePicture={profilePicture} /> : <Navigate to="/home" />} />
           <Route path="/profile" element={accessToken ? <Profile accessToken={accessToken} onProfilePictureChange={setProfilePicture} /> : <Navigate to="/home" />} />
-
+          <Route path="/profile/:username" component={UserListProfile} /> 
         </Routes>
       </BrowserRouter>
     </div>
