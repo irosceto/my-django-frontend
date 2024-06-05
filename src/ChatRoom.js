@@ -100,6 +100,8 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
 
 
       <div className="containerbox">
+
+        <p className='usershead'>Oda Kullanıcıları</p>
       {messages.map((message, index) => {
     let showSender = true;
     if (index > 0) {
@@ -111,8 +113,11 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
       }
     }
     return (
-      <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'received'}`}>
+      <div key={index} className={`message ${message.sender === 'me' ? 'sent' : 'accesed'}`}
+      style={{ display: showSender ? 'block' : 'none' }}>
         {showSender && <span className="sender">{String(message.sender)}</span>}
+        
+        
        
       </div>
     );
