@@ -1,0 +1,34 @@
+body {
+  background-color: #ffffff; /* Sayfa arka plan rengi */
+}
+
+.en-dis {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Öğeleri dikey olarak ortalar */
+  padding: 20px; /* Kenar boşlukları */
+  margin-top: 125px;
+}
+
+.bilgi {
+  width: 40%; /* Profil bilgilerinin genişliği */
+  margin-left: 725px;
+}
+
+.resim {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+  
+}
+
+.resim img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Resmin tamamının görünmesini sağlar */
+}

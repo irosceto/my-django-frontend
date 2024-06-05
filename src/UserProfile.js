@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './UserProfile.css';
 
 const UserProfile = ({ accessToken }) => {
   const [profile, setProfile] = useState(null);
@@ -28,12 +29,16 @@ const UserProfile = ({ accessToken }) => {
   }
 
   return (
-    <div>
+    <div className="en-dis">
+      <div className="bilgi">
       <h1>Kullanıcı Profili</h1>
       <p>Kullanıcı Adı: {profile.username}</p>
       <p>Email: {profile.email}</p>
+      </div>
       {profile.profile_picture && (
-        <img src={profile.profile_picture} alt="Profil Resmi" />
+        <div className="resim">
+          <img src={profile.profile_picture} alt="Profil Resmi" />
+        </div>  
       )}
     </div>
   );
