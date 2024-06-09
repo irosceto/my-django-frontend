@@ -33,7 +33,7 @@ const UserProfile = ({ accessToken }) => {
     <div>
       <div className="ust">
         <div className="gerii">
-        <Link to="/chat/:roomId" style={{ cursor: 'pointer', float: 'right', textDecoration: 'none' }}>Geri</Link>
+        <Link to="/chat" style={{ cursor: 'pointer', float: 'right', textDecoration: 'none' }}>Geri</Link>
         </div>
         
       </div>
