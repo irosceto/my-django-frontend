@@ -83,6 +83,9 @@ const Profile = ({ accessToken, onProfilePictureChange }) => {
   return (
     <div>
       <div className="yukari">
+      <div className="geriii">
+        <Link to="/chat" style={{ cursor: 'pointer', float: 'right', textDecoration: 'none' }}>Geri</Link>
+        </div>
         
         <div className="profile-container">
       <div className="profile-info">
