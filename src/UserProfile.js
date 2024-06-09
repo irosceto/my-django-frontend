@@ -32,7 +32,11 @@ const UserProfile = ({ accessToken }) => {
   return (
     <div>
       <div className="ust">
-        
+
+        <div className="gerii">
+        <Link to="/chat" style={{ cursor: 'pointer', float: 'right', textDecoration: 'none' }}>Geri</Link>
+        </div>
+
         
       </div>
       <div className="en-dis">
