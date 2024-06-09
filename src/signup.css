@@ -106,12 +106,14 @@ input {
   height: 100vh;
   float: right; /* sağa hizalamak için */
   margin-right: 175px;
+  margin-top: 125px;
 
 }
 
 .card-body {
   text-align: center;
   padding: 20px;
+  padding-right: 40px;
   border: 5px solid #cfaeae;
   border-radius: 20px;
   box-shadow: 0 4px 8px #8ca0de1a;
