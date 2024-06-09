@@ -75,9 +75,8 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
         }
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch room users');
-      }
+      
+      
 
       const data = await response.json();
       setMembers(data);
