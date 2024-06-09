@@ -75,9 +75,8 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
         }
       });
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch room users');
-      }
+      
+      
 
       const data = await response.json();
       setMembers(data);
@@ -101,9 +100,7 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
         <div className="profile" onClick={handleProfileClick} style={{ cursor: 'pointer' }}>
           {profilePicture && <img src={`http://localhost:8000${profilePicture}`} alt="Profil Resmi" />}
         </div>
-        <div className="geri">
-        <Link to="/chat" style={{ cursor: 'pointer', float: 'right', textDecoration: 'none' }}>Geri</Link>
-        </div>
+        
         
       </div>
 
