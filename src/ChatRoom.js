@@ -82,7 +82,7 @@ const ChatRoom = ({ chatRoomId, accessToken, profilePicture }) => {
       setMembers(data);
     } catch (error) {
       console.error('Error fetching room users:', error);
-      setError('Oda kullanıcıları alınırken hata: ' + error.message);
+      
     }
   };
 
