@@ -24,7 +24,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:8000",
+  
+  "proxy": "https://chatapplicationwithdjango-13eb.onrender.com",
   "eslintConfig": {
     "extends": [
       "react-app",
