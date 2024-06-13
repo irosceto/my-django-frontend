@@ -25,7 +25,8 @@
     "eject": "react-scripts eject"
   },
   
-  "proxy": "https://chatapplicationwithdjango-13eb.onrender.com",
+  "proxy": "http://localhost:8000",
+
   "eslintConfig": {
     "extends": [
       "react-app",
